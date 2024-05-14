@@ -74,7 +74,7 @@ const Form = ({feedbackData}) => {
   return (
     <form onSubmit={handleSubmit}>
       <Box sx={{
-          width:'80%',
+          width: '80%',
           margin: 'auto',
           padding: '1rem',
           boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px'
