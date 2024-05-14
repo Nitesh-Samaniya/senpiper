@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Checkbox, FormControlLabel, FormControl, FormLabel, Typography, Box } from '@mui/material';
+import { TextField, Button, Checkbox, FormControlLabel, FormControl, FormLabel, Typography, Box, Snackbar, Alert } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Form = ({feedbackData}) => {
@@ -12,6 +12,9 @@ const Form = ({feedbackData}) => {
     cleanliness: '',
     overallExperience: ''
   });
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
   const below735 = useMediaQuery('(max-width:735px)');
   const below900 = useMediaQuery('(max-width:900px)');
   const below600 = useMediaQuery('(max-width:600px)');
@@ -59,16 +62,24 @@ const Form = ({feedbackData}) => {
         cleanliness: '',
         overallExperience: ''
       })
-      alert('Thank you for completing the information');
+      setSnackbarMessage('Thank you for completing the information');
+      setSnackbarSeverity('success');
+      setSnackbarOpen(true);
     }
   };
 
   const validateForm = () => {
     if(formData.beverageQuality==='' || formData.cleanliness==='' || formData.overallExperience==='' || formData.serviceQuality===''){
-      alert("Please fill all the check boxes.")
+      setSnackbarMessage('Please fill all the check boxes.');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
       return false;
     }
     return true;
+  };
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -87,7 +98,7 @@ const Form = ({feedbackData}) => {
             padding: '0.5rem',
             boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px'
           }}>
-            <Typography variant="h5">Aromatic Bar</Typography>
+            <Typography variant="h4" sx={{color: '#5146ff'}}>Aromatic Bar</Typography>
           </Box>
 
           {/* desc */}
@@ -245,6 +256,20 @@ const Form = ({feedbackData}) => {
           <Box mt={5} mb={5} sx={{display: 'flex', justifyContent:'center'}}>
             <Button variant="outlined" type="submit">Submit</Button>
           </Box>
+
+          <Snackbar 
+            open={snackbarOpen} 
+            autoHideDuration={6000} 
+            onClose={handleSnackbarClose}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+            >
+            <Alert onClose={handleSnackbarClose} severity={snackbarSeverity}>
+              {snackbarMessage}
+            </Alert>
+          </Snackbar>
         </Box>
 
       </Box>
