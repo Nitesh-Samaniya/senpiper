@@ -1,9 +1,13 @@
-import Box from '@mui/material/Box';
 import "./App.css";
-import { CssBaseline, Tab, Tabs, Toolbar, Typography } from '@mui/material';
+import { Tabs, Tab, Box, CssBaseline, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import Form from './components/Form';
 
 function App() {
+  // const feedbackData = JSON.parse(localStorage.getItem("feedbackData")) || [];
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   
   return (
     <Box sx={{fontFamily: 'sans-serif'}} className="App">
@@ -19,8 +23,15 @@ function App() {
           backgroundColor: '#CAF4FF'
         }} 
       >
-        <Box>
-          <Typography variant="h5">F&G Feedback System</Typography>
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '10px'
+          }}
+        >
+          <Typography variant={isMobile ? "h6" : "h5"}>F&G</Typography>
+          {!isMobile && <Typography variant="h5">Feedback System</Typography>}
         </Box>
 
         <Box>
@@ -33,7 +44,7 @@ function App() {
 
       <Toolbar />
 
-      <Box>
+      <Box mt={5}>
         <Form />        
       </Box>
     </Box>
