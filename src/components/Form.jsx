@@ -50,9 +50,9 @@ const Form = ({feedbackData}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const feedbackData = JSON.parse(localStorage.getItem("feedbackData")) || [];
+      const feedbackData = JSON.parse(localStorage.getItem("sensPiperfeedNitesh")) || [];
       const data = [...feedbackData, formData];
-      localStorage.setItem('feedbackData', JSON.stringify(data));
+      localStorage.setItem('sensPiperfeedNitesh', JSON.stringify(data));
       setFormData({
         customerName: '',
         email: '',
@@ -62,7 +62,7 @@ const Form = ({feedbackData}) => {
         cleanliness: '',
         overallExperience: ''
       })
-      setSnackbarMessage('Thank you for completing the information');
+      setSnackbarMessage('Thank you for participating in our Q/A.');
       setSnackbarSeverity('success');
       setSnackbarOpen(true);
     }

@@ -63,7 +63,7 @@ export default function FeedBackTable() {
   );
 
   React.useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('feedbackData'));
+    const data = JSON.parse(localStorage.getItem('sensPiperfeedNitesh')) || []
     let dataWithId = data.map((item, index) => ({ id: index, ...item }));
     dataWithId = dataWithId.reverse();
     if (data) {

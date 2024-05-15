@@ -16,7 +16,7 @@ function App() {
   }
 
   useEffect(()=>{
-    const sec = localStorage.getItem("senPiperF&gNitesh")
+    const sec = localStorage.getItem("senPiperF&gNitesh") || 0
     setSection(sec)
   },[])
 
