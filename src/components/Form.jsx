@@ -69,12 +69,24 @@ const Form = ({feedbackData}) => {
   };
 
   const validateForm = () => {
+    const alphaNumericRegex = /^(?!\d+$)[a-zA-Z0-9]+$/;
+
     if(formData.beverageQuality==='' || formData.cleanliness==='' || formData.overallExperience==='' || formData.serviceQuality===''){
       setSnackbarMessage('Please fill all the check boxes.');
       setSnackbarSeverity('error');
       setSnackbarOpen(true);
       return false;
-    }
+    }else if (!alphaNumericRegex.test(formData.customerName)) {
+    setSnackbarMessage('Customer name should contain alphabetic characters or alphanumeric characters, but not only numeric.');
+    setSnackbarSeverity('error');
+    setSnackbarOpen(true);
+    return false;
+  }else if(formData.phone.length !== 10){
+    setSnackbarMessage('Wrong Mobile Number.');
+    setSnackbarSeverity('error');
+    setSnackbarOpen(true);
+    return false;
+  }
     return true;
   };
 
