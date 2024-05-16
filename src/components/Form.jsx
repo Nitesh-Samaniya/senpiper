@@ -69,7 +69,7 @@ const Form = ({feedbackData}) => {
   };
 
   const validateForm = () => {
-    const alphaNumericRegex = /^(?!\d+$)[a-zA-Z0-9]+$/;
+    const alphaNumericRegex = /^(?!\d+$)[a-zA-Z0-9\s]+$/;
 
     if(formData.beverageQuality==='' || formData.cleanliness==='' || formData.overallExperience==='' || formData.serviceQuality===''){
       setSnackbarMessage('Please fill all the check boxes.');
